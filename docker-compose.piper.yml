@@ -1,0 +1,9 @@
+version: "3"
+services:
+  piper:
+    container_name: piper
+    image: ghcr.io/rhasspy/wyoming-piper
+    command: --voice fr_FR-siwis-medium
+    ports:
+      - "0.0.0.0:10200:10200/tcp"
+    restart: unless-stopped
