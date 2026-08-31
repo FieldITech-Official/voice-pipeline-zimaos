@@ -12,16 +12,39 @@ Ce dépôt fournit les fichiers de configuration **Docker Compose** nécessaires
 ## 🚀 Instructions d'installation
 
 1. Connectez-vous à votre interface **Portainer (ZimaOS)**.
-2. Copiez les codes des fichiers `docker-compose.piper.yml` et `docker-compose.whisper.yml` dans **deux Stacks distincts**.
+2. Copiez les codes ci-dessous dans **deux Stacks distincts**.
 3. Lancez le déploiement des deux stacks.
 4. Dans **Home Assistant**, assurez-vous d'utiliser l'intégration **Wyoming Protocol** pour lier vos conteneurs.
 
 ---
 
-## 🔗 Liens & Ressources
+### [docker-compose.piper.yml](./docker-compose.piper.yml)
+```yaml
+version: "3"
+services:
+  piper:
+    container_name: piper
+    image: ghcr.io/rhasspy/wyoming-piper
+    command: --voice fr_FR-siwis-medium
+    ports:
+      - "0.0.0.0:10200:10200/tcp"
+    restart: unless-stopped
+```
 
-* 🌐 **Site Web** : [fielditech.com](https://fielditech.com)
-* ☕ **Soutenir le projet** : Si ce partage vous est utile et vous fait gagner du temps, vous pouvez m'offrir un café sur [Buy Me a Coffee](https://buymeacoffee.com/fielditech).
+### [docker-compose.whisper.yml](./docker-compose.whisper.yml)
+```yaml
+version: "3"
+services:
+  whisper:
+    container_name: whisper
+    image: ghcr.io/rhasspy/wyoming-whisper
+    command: --model small-int8 --language fr
+    ports:
+      - "0.0.0.0:10300:10300/tcp"
+    restart: unless-stopped
+```
 
-## 📄 Licence
-Distribué sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+🔗 Liens & Ressources
+🌐 Site Web : fielditech.com
+
+☕ Soutenir le projet : Si ce partage vous est utile et vous fait gagner du temps, vous pouvez m'offrir un café sur Buy Me a Coffee.
