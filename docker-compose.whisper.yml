@@ -1,0 +1,9 @@
+version: "3"
+services:
+  whisper:
+    container_name: whisper
+    image: ghcr.io/rhasspy/wyoming-whisper
+    command: --model small-int8 --language fr
+    ports:
+      - "0.0.0.0:10300:10300/tcp"
+    restart: unless-stopped
